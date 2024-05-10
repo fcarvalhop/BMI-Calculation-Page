@@ -1,70 +1,70 @@
 function main() {
     const form = document.querySelector('#form');
      
-    function recebeEventoForm (evento) {
+    function eventReceiveForm (evento) {
         evento.preventDefault();
-        const pesoInput = evento.target.querySelector('#peso');
-        const alturaInput = evento.target.querySelector('#altura');
+        const weightInput = evento.target.querySelector('#weight');
+        const heightInput = evento.target.querySelector('#height');
         
-        const peso = Number(pesoInput.value);
-        const altura = Number(alturaInput.value);
+        const weight = Number(weightInput.value);
+        const height = Number(heightInput.value);
 
-        if (peso < 1 || !peso ){
-            setResultado('Peso inválido.', false);
+        if (weight < 1 || !weight ){
+            setResult('Invalid Weight.', false);
             return;
         }
-        if (altura < 1 || !altura ){
-            setResultado('Altura inválida.', false);
+        if (height < 1 || !height ){
+            setResult('Invalid Height.', false);
             return;
         }
         
-        const imc = calculoImc(peso, altura);
-        const nivel = nivelImc(imc);
+        const bmi = calculateBmi(weight, height);
+        const index = indexBmi(bmi);
 
-        const msg = `Seu IMC é ${imc} (${nivel}).`;
-        setResultado(msg, true);
+        const msg = `Your BMI is ${bmi} (${index}).`;
+        setResult(msg, true);
 
     }
 
-    form.addEventListener('submit', recebeEventoForm);
+    form.addEventListener('submit', eventReceiveForm);
 }
 
-function criaP(){
+function createP(){
     const p = document.createElement('p');
     return p;
 }
 
-function calculoImc(peso, altura){
-    const imc = peso / (altura * altura);
-    return imc.toFixed(2);
+function calculateBmi(weight, height){
+    const bmi = weight / (height * height);
+    return bmi.toFixed(2);
 }
 
-function nivelImc(imc){
-    const nivel = ['Abaixo do peso', 'Peso normal', 'Sobrepeso', 'Obesidade grau 1', 
-    'Obesidade grau 2', 'Obesidade grau 3'];
+function indexBmi(bmi){
+    const index = ['Underweight', 'Normal', 'Overweight', 'Obesity First Degree', 
+    'Obesity Second Degree', 'Obesity Third Degree'];
 
-    if (imc < 18.5) return nivel[0];
-    if (imc <= 24.9) return nivel[1];
-    if (imc <= 29.9) return nivel[2];
-    if (imc <= 34.9) return nivel[3];
-    if (imc <= 39.9) return nivel[4];
-    if (imc >= 40) return nivel[5];
+    if (bmi < 18.5) return index[0];
+    if (bmi <= 24.9) return index[1];
+    if (bmi <= 29.9) return index[2];
+    if (bmi <= 34.9) return index[3];
+    if (bmi <= 39.9) return index[4];
+    if (bmi >= 40) return index[5];
 }
 
-function setResultado(msg, isValid){
-    const resultado = document.querySelector('#resultado');
-    resultado.innerHTML = '';
+function setResult(msg, isValid){
+    const result = document.querySelector('#result');
+    result.innerHTML = '';
 
-    const p = criaP();
+    const p = createP();
 
     if (isValid){
-        p.classList.add('paragrafo-resultado');
+        p.classList.add('paragraph-result');
     }
     else {
-        p.classList.add('paragrafo-error');
+        p.classList.add('paragraph-error');
     }
     p.innerHTML = msg;
-    resultado.appendChild(p);
+    result.appendChild(p);
 }
 
 main();

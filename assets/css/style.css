@@ -24,7 +24,7 @@ body {
 table td, table th {
     padding: 3px;
     text-align: left;
-    width:70%;
+    width:60%;
 }
 
 form input, form label, form button {
@@ -65,12 +65,12 @@ form button:hover {
     border-radius: 10px;
 }
 
-.paragrafo-resultado{
+.paragraph-result{
     background: rgb(78, 243, 122);
     padding: 10px 20px;
 }
 
-.paragrafo-error{
+.paragraph-error{
     background: rgb(246, 84, 84);
     padding: 10px 20px;
 }
